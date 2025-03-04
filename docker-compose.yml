@@ -24,7 +24,7 @@ services:
 
   inspireme-api:
     build:
-      context: ./inspireme-api
+      context: .
       dockerfile: Dockerfile
     container_name: inspireme-api
     restart: always

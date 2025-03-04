@@ -5,7 +5,7 @@
     WORKDIR /app
 
     # Copia os arquivos necessários
-    COPY package*.json /app/
+    COPY ./inspireme-api/ package*.json /app/
 
     RUN ls -la /app/
 
