@@ -14,7 +14,7 @@ services:
   - name: ollama
     type: web
     env: docker
-    image: ollama/ollama
+    image: 'ollama/ollama'
     plan: free
     envVars:
       - key: OLLAMA_PORT
@@ -23,7 +23,7 @@ services:
   - name: open-webui
     type: web
     env: docker
-    image: ghcr.io/open-webui/open-webui:latest
+    image: 'ghcr.io/open-webui/open-webui:latest'
     plan: free
     envVars:
       - key: OLLAMA_BASE_URL
