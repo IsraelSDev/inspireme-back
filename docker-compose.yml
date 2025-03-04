@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    restart: always
+    ports:
+      - "3001:3000"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_PORT=3000
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  inspireme-api:
+    build:
+      context: ./inspireme-api/app
+      dockerfile: Dockerfile
+    container_name: inspireme-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - open-webui
+
+volumes:
+  ollama_data:
+    driver: local
