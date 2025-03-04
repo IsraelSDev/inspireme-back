@@ -12,7 +12,7 @@ services:
         value: "3000"
 
   - name: ollama
-    type: privateService
+    type: web
     env: docker
     image: ollama/ollama
     plan: free
