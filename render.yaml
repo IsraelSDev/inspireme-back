@@ -1,0 +1,32 @@
+services:
+  - name: inspireme-api
+    type: web
+    env: docker
+    repo: https://github.com/IsraelSDev/inspireme-back
+    branch: main
+    plan: free
+    dockerContext: ./inspireme-api
+    dockerfilePath: inspireme-api/Dockerfile
+    envVars:
+      - key: PORT
+        value: "3000"
+
+  - name: ollama
+    type: privateService
+    env: docker
+    image: ollama/ollama
+    plan: free
+    envVars:
+      - key: OLLAMA_PORT
+        value: "11434"
+
+  - name: open-webui
+    type: web
+    env: docker
+    image: ghcr.io/open-webui/open-webui:latest
+    plan: free
+    envVars:
+      - key: OLLAMA_BASE_URL
+        value: "http://ollama:11434"
+      - key: WEBUI_PORT
+        value: "3000"
